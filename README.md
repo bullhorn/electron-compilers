@@ -1,11 +1,6 @@
-## electron-compilers
+## express-compilers
 
-<a href="http://electronjs.github.io/electron-compilers/docs">
-![](http://electronjs.github.io/electron-compilers/docs/badge.svg)
-</a>
-
-electron-compilers are the actual implementations of classes that power
-[electron-compile](https://github.com/electronjs/electron-compile)
+> Modeled off of [electron-compilers](https://github.com/electronjs/electron-compilers), updated for use in [express-compile](https://github.com/bullhorn/express-compile)
 
 For JavaScript:
 
@@ -16,6 +11,8 @@ For JavaScript:
 For CSS:
 
 * LESS
+* SCSS
+* SASS
 
 For HTML:
 

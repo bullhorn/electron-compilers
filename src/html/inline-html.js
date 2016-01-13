@@ -6,7 +6,7 @@ import {CompilerBase} from '../compiler-base';
 const inputMimeTypes = ['text/html'];
 let cheerio = null;
 
-const d = require('debug')('electron-compile:inline-html');
+const d = require('debug')('express-compiler:inline-html');
 
 /**
  * @access private
@@ -70,7 +70,7 @@ export default class InlineHtmlCompiler extends CompilerBase {
   async each(nodes, selector) {
     let acc = [];
     nodes.each((i, el) => {
-      let promise = selector(i,el);
+      let promise = selector(i, el);
       if (!promise) return false;
 
       acc.push(promise);
@@ -83,8 +83,8 @@ export default class InlineHtmlCompiler extends CompilerBase {
   eachSync(nodes, selector) {
     // NB: This method is here just so it's easier to mechanically
     // translate the async compile to compileSync
-    return nodes.each((i,el) => {
-      selector(i,el);
+    return nodes.each((i, el) => {
+      selector(i, el);
       return true;
     });
   }
@@ -106,7 +106,7 @@ export default class InlineHtmlCompiler extends CompilerBase {
 
       let origText = $(el).text();
       let newText = await that.compileBlock(origText, filePath, mimeType, thisCtx);
-      
+
       if (origText !== newText) {
         $(el).text(newText);
         $(el).attr('type', 'text/css');
@@ -138,7 +138,9 @@ export default class InlineHtmlCompiler extends CompilerBase {
 
     $('link').map((i, el) => {
       let href = $(el).attr('href');
-      if (href && href.length > 2) { $(el).attr('href', InlineHtmlCompiler.fixupRelativeUrl(href)); }
+      if (href && href.length > 2) {
+        $(el).attr('href', InlineHtmlCompiler.fixupRelativeUrl(href));
+      }
     });
 
     $('x-require').map((i, el) => {
@@ -186,7 +188,7 @@ export default class InlineHtmlCompiler extends CompilerBase {
         count: styleCount++,
         tag: 'style'
       }, compilerContext);
-      
+
       let origText = $(el).text();
       let newText = that.compileBlockSync(origText, filePath, mimeType, thisCtx);
 
@@ -210,7 +212,7 @@ export default class InlineHtmlCompiler extends CompilerBase {
       }, compilerContext);
 
       let mimeType = $(el).attr('type');
-      
+
       let oldText = $(el).text();
       let newText = that.compileBlockSync(oldText, filePath, mimeType, thisCtx);
 
@@ -222,7 +224,9 @@ export default class InlineHtmlCompiler extends CompilerBase {
 
     $('link').map((i, el) => {
       let href = $(el).attr('href');
-      if (href && href.length > 2) { $(el).attr('href', InlineHtmlCompiler.fixupRelativeUrl(href)); }
+      if (href && href.length > 2) {
+        $(el).attr('href', InlineHtmlCompiler.fixupRelativeUrl(href));
+      }
     });
 
     $('x-require').map((i, el) => {

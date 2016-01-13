@@ -7,13 +7,13 @@ let lessjs = null;
 
 /**
  * @access private
- */ 
+ */
 export default class LessCompiler extends CompilerBase {
   constructor() {
     super();
 
     this.compilerOptions = {
-      sourceMap: { sourceMapFileInline: true }
+      sourceMap: {sourceMapFileInline: true}
     };
 
     this.seenFilePaths = {};
