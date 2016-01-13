@@ -2,9 +2,10 @@ import _ from 'lodash';
 
 const filenames = [
   'css/less',
+  'css/sass',
   'js/babel',
-  'js/coffeescript',
   'js/typescript',
+  'js/coffeescript',
   'html/inline-html',
   'html/jade',
   'passthrough'

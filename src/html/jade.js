@@ -6,8 +6,8 @@ let jade = null;
 
 /**
  * @access private
- */ 
- export default class JadeCompiler extends SimpleCompilerBase {
+ */
+export default class JadeCompiler extends SimpleCompilerBase {
   constructor() {
     super();
     this.compilerOptions.sourceMap = true;
@@ -22,11 +22,11 @@ let jade = null;
 
     let code = jade.render(
       sourceCode,
-      _.extend({ filename: filePath, cache: false }, this.compilerOptions));
+      _.extend({filename: filePath, cache: false}, this.compilerOptions));
 
-    return { code, mimeType: 'text/html' };
+    return {code, mimeType: 'text/html'};
   }
-  
+
   getCompilerVersion() {
     return require('jade/package.json').version;
   }
