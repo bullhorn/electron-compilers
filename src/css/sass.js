@@ -29,8 +29,6 @@ let prefixer = postcss([autoprefixer(autoprefixerOptions)]);
 export default class SassCompiler extends CompilerBase {
   constructor() {
     super();
-    this.compilerOptions.sourceMap = true;
-    this.compilerOptions.sourceMapEmbed = true;
     this.seenFilePaths = {};
   }
 
@@ -52,6 +50,11 @@ export default class SassCompiler extends CompilerBase {
 
     let paths = Object.keys(this.seenFilePaths);
     paths.unshift('.');
+
+    // Make sure to keep the included paths provided
+    if (this.compilerOptions.includePaths) {
+      paths.push(this.compilerOptions.includePaths);
+    }
 
     this.seenFilePaths[path.dirname(filePath)] = true;
 
@@ -94,6 +97,11 @@ export default class SassCompiler extends CompilerBase {
 
     let paths = Object.keys(this.seenFilePaths);
     paths.unshift('.');
+
+    // Make sure to keep the included paths provided
+    if (this.compilerOptions.includePaths) {
+      paths.push(this.compilerOptions.includePaths);
+    }
 
     this.seenFilePaths[path.dirname(filePath)] = true;
 
