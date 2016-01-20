@@ -53,7 +53,7 @@ export default class SassCompiler extends CompilerBase {
 
     // Make sure to keep the included paths provided
     if (this.compilerOptions.includePaths) {
-      paths.push(this.compilerOptions.includePaths);
+      paths = paths.concat(this.compilerOptions.includePaths);
     }
 
     this.seenFilePaths[path.dirname(filePath)] = true;
@@ -100,7 +100,7 @@ export default class SassCompiler extends CompilerBase {
 
     // Make sure to keep the included paths provided
     if (this.compilerOptions.includePaths) {
-      paths.push(this.compilerOptions.includePaths);
+      paths = paths.concat(this.compilerOptions.includePaths);
     }
 
     this.seenFilePaths[path.dirname(filePath)] = true;
