@@ -54,6 +54,13 @@ export default class BabelCompiler extends CompilerBase {
       ast: false
     });
 
+    let result = babel.transform(sourceCode, opts);
+
+    console.log('RRRRRRR', result);
+    if (!result || !result.code) {
+      console.log('ERR', result);
+    }
+
     return {
       code: babel.transform(sourceCode, opts).code,
       mimeType: 'application/javascript'
