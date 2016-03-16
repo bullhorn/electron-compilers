@@ -24,18 +24,6 @@ export default class BabelCompiler extends CompilerBase {
     return [];
   }
 
-  // NB: This method exists to stop Babel from trying to load plugins from the
-  // app's node_modules directory, which in a production app doesn't have Babel
-  // installed in it. Instead, we try to load from our entry point's node_modules
-  // directory (i.e. Grunt perhaps), and if it doesn't work, just keep going.
-  attemptToPreload(names, prefix) {
-    try {
-      return _.map(names, (x) => require.main.require(`babel-${prefix}-${x}`));
-    } catch (e) {
-      return null;
-    }
-  }
-
   async compile(sourceCode, filePath, compilerContext) {
     babel = babel || require('babel-core');
 
@@ -43,16 +31,6 @@ export default class BabelCompiler extends CompilerBase {
       filename: filePath,
       ast: false
     });
-
-    if ('plugins' in opts) {
-      let plugins = this.attemptToPreload(opts.plugins, 'plugin');
-      if (plugins && plugins.length === opts.plugins.length) opts.plugins = plugins;
-    }
-
-    if ('presets' in opts) {
-      let presets = this.attemptToPreload(opts.presets, 'preset');
-      if (presets && presets.length === opts.presets.length) opts.presets = presets;
-    }
 
     return {
       code: babel.transform(sourceCode, opts).code,
@@ -75,16 +53,6 @@ export default class BabelCompiler extends CompilerBase {
       filename: filePath,
       ast: false
     });
-
-    if ('plugins' in opts) {
-      let plugins = this.attemptToPreload(opts.plugins, 'plugin');
-      if (plugins && plugins.length === opts.plugins.length) opts.plugins = plugins;
-    }
-
-    if ('presets' in opts) {
-      let presets = this.attemptToPreload(opts.presets, 'preset');
-      if (presets && presets.length === opts.presets.length) opts.presets = presets;
-    }
 
     return {
       code: babel.transform(sourceCode, opts).code,
