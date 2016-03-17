@@ -1,12 +1,11 @@
 {
   "name": "express-compilers",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Compiler implementations for express-compile",
   "main": "lib/main.js",
   "scripts": {
     "doc": "esdoc -c ./esdoc.json",
-    "compile": "git clean -xdf lib && babel -d lib/ src/",
-    "prepublish": "npm run compile"
+    "compile": "git clean -xdf lib && babel -d lib/ src/"
   },
   "repository": {
     "type": "git",
