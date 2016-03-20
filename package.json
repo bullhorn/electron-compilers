@@ -1,11 +1,12 @@
 {
   "name": "express-compilers",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "Compiler implementations for express-compile",
   "main": "lib/main.js",
   "scripts": {
     "doc": "esdoc -c ./esdoc.json",
-    "compile": "git clean -xdf lib && babel -d lib/ src/"
+    "compile": "git clean -xdf lib && babel -d lib/ src/",
+    "prepublish": "npm run compile && npm run doc"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,9 @@
   "keywords": [
     "express"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "contributors": [
     "Joshua Godi <joshuagodi@gmail.com>",
     "Paul Betts <paul@paulbetts.org>",
