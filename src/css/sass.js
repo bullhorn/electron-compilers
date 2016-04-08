@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import path from 'path';
-import {CompilerBase} from '../compiler-base';
+import { CompilerBase } from '../compiler-base';
 import pify from 'pify';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
@@ -37,7 +37,7 @@ export default class SassCompiler extends CompilerBase {
   }
 
   async shouldCompileFile(fileName, compilerContext) {
-    return true;
+    return !path.basename(fileName).startsWith('_');
   }
 
   async determineDependentFiles(sourceCode, filePath, compilerContext) {
@@ -84,7 +84,7 @@ export default class SassCompiler extends CompilerBase {
   }
 
   shouldCompileFileSync(fileName, compilerContext) {
-    return true;
+    return !path.basename(fileName).startsWith('_');
   }
 
   determineDependentFilesSync(sourceCode, filePath, compilerContext) {
